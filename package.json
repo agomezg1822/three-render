@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "webpack serve",
-    "prebuild": "rimraf ./build && mkdir ./build",
+    "prebuild": "rimraf ./docs && mkdir ./docs",
     "build": "webpack --mode production"
   },
   "dependencies": {
