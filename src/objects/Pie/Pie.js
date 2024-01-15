@@ -17,31 +17,35 @@ export default class Pie extends Group {
       this.position.set(0,0,0);
     
       for (let i = 1; i < 100; i++) {
+        //Asignacion de los nombres a cada objeto
         const asignacion = i.toString().padStart(2, '0');
         const objeto_existente = gltf.scene.getObjectByName(`i${asignacion}`);
+
+        //Leer excel
+
+        // Asignacion a los valores a y
         objeto_existente.scale.y = i;
 
+      //Color
        // Crear un nuevo material para cada objeto
        const nuevoMaterial = objeto_existente.material.clone();
-
-       // Asignar color según el rango de la escala en y
-       if (10 >= objeto_existente.scale.y >= 20) {
+       if ( objeto_existente.scale.y >=10 &&  objeto_existente.scale.y <=20) {
          // Verde
          objeto_existente.material.color.setHex(0x00ff00);
        } 
-       else if (i >= 21 && i <= 40) {
+       else if (objeto_existente.scale.y >= 21 && objeto_existente.scale.y <= 40) {
          // azul
          objeto_existente.material.color.setHex(0x0000ff);
        }
-       else if (i>= 41 && i <= 60) {
+       else if ( objeto_existente.scale.y >= 41 && objeto_existente.scale.y <= 60) {
         // amarillo
         objeto_existente.material.color.setHex(0xffff00);
        }
-       else if (i >= 61 && i<= 80){
+       else if (objeto_existente.scale.y >= 61 && objeto_existente.scale.y<= 80){
         //naranja
         objeto_existente.material.color.setHex(0xffa500);
        }
-       else if (i >= 81 && i<= 99){
+       else if (objeto_existente.scale.y >= 81 && objeto_existente.scale.y <= 99){
         //rojo
         objeto_existente.material.color.setHex(0xff0000);
        }
@@ -55,4 +59,10 @@ export default class Pie extends Group {
     });
   };
 };
+
+function leer_excel(valor_y){
+  valor_esacala_en_y=50;
+  return valor_esacala_en_y;
+};
+
 
