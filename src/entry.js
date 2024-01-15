@@ -36,7 +36,7 @@ renderer.setClearColor(0x7ec0ee, 1);
 // render loop
 const onAnimationFrameHandler = (timeStamp) => {
   renderer.render(scene, camera);
-  //seedScene.update && seedScene.update(timeStamp);
+  seedScene.update && seedScene.update(timeStamp);
   window.requestAnimationFrame(onAnimationFrameHandler);
 }
 window.requestAnimationFrame(onAnimationFrameHandler);
