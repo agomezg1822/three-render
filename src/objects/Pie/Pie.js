@@ -59,9 +59,5 @@ export default class Pie extends Group {
   };
 };
 
-function leer_excel(valor_y){
-  valor_esacala_en_y=50;
-  return valor_esacala_en_y;
-};
 
 
