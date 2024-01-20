@@ -1,5 +1,6 @@
 const path = require("path");
 const pkg = require("./package.json");
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const buildPath = "./docs/";
 
@@ -31,5 +32,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ title: "three-seed project" })],
+  plugins: [
+    new HtmlWebpackPlugin({ title: "three-seed project" }),
+    new CopyPlugin({
+      patterns: [{ from: "src/public", to: "" }],
+    }),
+  ],
 };

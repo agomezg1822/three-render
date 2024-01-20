@@ -1,6 +1,7 @@
 import { Group } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import MODEL from "./Pie.glb";
+import { utils, read } from "xlsx";
 
 export default class Pie extends Group {
   constructor() {
@@ -21,7 +22,7 @@ export default class Pie extends Group {
         const objeto_existente = gltf.scene.getObjectByName(`i${asignacion}`);
         //valor_y = dataExcel[0 + i].Data;
         //console.log(valor_y);
-        objeto_existente.scale.y = i;
+        objeto_existente.scale.y = 50;
 
         //Color
         // Crear un nuevo material para cada objeto
@@ -64,10 +65,10 @@ export default class Pie extends Group {
   }
 }
 
-const XLSX = require("xlsx");
-
-function leerExcel(ruta) {
-  const workbook = XLSX.readFile(ruta);
+async function leerExcel(ruta) {
+  const res = await fetch(ruta);
+  const file = await res.arrayBuffer();
+  const workbook = read(file);
   const workbookSheets = workbook.SheetNames;
   const sheetName = workbookSheets[1];
   const sheet = workbook.Sheets[sheetName];
@@ -75,11 +76,11 @@ function leerExcel(ruta) {
     s: { c: 1, r: 2 }, // Columna B, Fila 4 (en formato de índices base 0)
     e: { c: 1, r: 101 }, // Columna B, Fila 102
   };
-  const dataExcel = XLSX.utils.sheet_to_json(sheet, { range });
+  const dataExcel = utils.sheet_to_json(sheet, { range });
   for (let i = 0; i < 99; i++) {
-    valor_y = dataExcel[0 + i].Data;
+    const valor_y = dataExcel[0 + i].Data;
     console.log(valor_y);
   }
 }
 
-leerExcel("./datos.xlsx");
+leerExcel("/datos.xlsx");
