@@ -11,21 +11,21 @@ export default class Pie extends Group {
 
     this.name = "pie";
 
-    loader.load(MODEL, (gltf) => {
+    loader.load(MODEL, async (gltf) => {
       this.add(gltf.scene);
       this.scale.set(10, 10, 10);
       this.position.set(0, 0, 0);
 
-      for (let i = 1; i < 199; i++) {
+      const valoresY = await leerExcel();
+      console.log(valoresY);
+
+      for (let i = 1; i < 100; i++) {
         //Asignacion de los nombres a cada objeto
         const asignacion = i.toString().padStart(2, "0");
         const objeto_existente = gltf.scene.getObjectByName(`i${asignacion}`);
-        //valor_y = dataExcel[0 + i].Data;
-        //console.log(valor_y);
-        objeto_existente.scale.y = 50;
+        objeto_existente.scale.y = valoresY[i - 1];
 
         //Color
-        // Crear un nuevo material para cada objeto
         const nuevoMaterial = objeto_existente.material.clone();
         if (objeto_existente.scale.y >= 10 && objeto_existente.scale.y <= 20) {
           // Verde
@@ -65,8 +65,8 @@ export default class Pie extends Group {
   }
 }
 
-async function leerExcel(ruta) {
-  const res = await fetch(ruta);
+async function leerExcel() {
+  const res = await fetch("/datos.xlsx");
   const file = await res.arrayBuffer();
   const workbook = read(file);
   const workbookSheets = workbook.SheetNames;
@@ -77,10 +77,12 @@ async function leerExcel(ruta) {
     e: { c: 1, r: 101 }, // Columna B, Fila 102
   };
   const dataExcel = utils.sheet_to_json(sheet, { range });
+  const valoresY = [];
+
   for (let i = 0; i < 99; i++) {
     const valor_y = dataExcel[0 + i].Data;
-    console.log(valor_y);
+    valoresY.push(valor_y);
   }
-}
 
-leerExcel("/datos.xlsx");
+  return valoresY;
+}
