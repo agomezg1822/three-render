@@ -17,48 +17,41 @@ export default class Pie extends Group {
       this.position.set(0, 0, 0);
 
       const valoresY = await leerExcel();
-      console.log(valoresY);
 
-      for (let i = 1; i < 100; i++) {
-        //Asignacion de los nombres a cada objeto
+      for (let i = 1; i < 99; i++) {
+        //Asignacion de los nombres a cada objeto del pie izquierdo
         const asignacion = i.toString().padStart(2, "0");
         const objeto_existente = gltf.scene.getObjectByName(`i${asignacion}`);
-        objeto_existente.scale.y = valoresY[i - 1];
+        objeto_existente.scale.y = valoresY[i - 1]; //[i - 1];
+        console.log(objeto_existente.scale.y);
 
         //Color
         const nuevoMaterial = objeto_existente.material.clone();
-        if (objeto_existente.scale.y >= 10 && objeto_existente.scale.y <= 20) {
+        const valorY = valoresY[i - 1];
+
+        if (valorY == 5) {
+          nuevoMaterial.color.setHex(0x78288c);
+        } else if (valorY >= 10 && valorY <= 20) {
           // Verde
-          objeto_existente.material.color.setHex(0x00ff00);
-        } else if (
-          objeto_existente.scale.y >= 21 &&
-          objeto_existente.scale.y <= 40
-        ) {
-          // azul
-          objeto_existente.material.color.setHex(0x0000ff);
-        } else if (
-          objeto_existente.scale.y >= 41 &&
-          objeto_existente.scale.y <= 60
-        ) {
-          // amarillo
-          objeto_existente.material.color.setHex(0xffff00);
-        } else if (
-          objeto_existente.scale.y >= 61 &&
-          objeto_existente.scale.y <= 80
-        ) {
-          //naranja
-          objeto_existente.material.color.setHex(0xffa500);
-        } else if (
-          objeto_existente.scale.y >= 81 &&
-          objeto_existente.scale.y <= 99
-        ) {
-          //rojo
-          objeto_existente.material.color.setHex(0xff0000);
+          nuevoMaterial.color.setHex(0x00ff00);
+        } else if (valorY >= 21 && valorY <= 40) {
+          // Azul
+          nuevoMaterial.color.setHex(0x0000ff);
+        } else if (valorY >= 41 && valorY <= 60) {
+          // Amarillo
+          nuevoMaterial.color.setHex(0xffff00);
+        } else if (valorY >= 61 && valorY <= 80) {
+          // Naranja
+          nuevoMaterial.color.setHex(0xffa500);
+        } else if (valorY >= 81 && valorY <= 99) {
+          // Rojo
+          nuevoMaterial.color.setHex(0xff0000);
         } else {
-          //Blanco
-          objeto_existente.material.color.setHex(0xffffff);
+          // Blanco
+          nuevoMaterial.color.setHex(0xffffff);
         }
-        //  // Asignar el nuevo material al objeto
+
+        //Asignar el nuevo material al objeto
         objeto_existente.material = nuevoMaterial;
       }
     });
@@ -73,7 +66,7 @@ async function leerExcel() {
   const sheetName = workbookSheets[1];
   const sheet = workbook.Sheets[sheetName];
   const range = {
-    s: { c: 1, r: 2 }, // Columna B, Fila 4 (en formato de índices base 0)
+    s: { c: 1, r: 2 }, // Columna B, Fila 4
     e: { c: 1, r: 101 }, // Columna B, Fila 102
   };
   const dataExcel = utils.sheet_to_json(sheet, { range });
@@ -83,6 +76,5 @@ async function leerExcel() {
     const valor_y = dataExcel[0 + i].Data;
     valoresY.push(valor_y);
   }
-
   return valoresY;
 }
