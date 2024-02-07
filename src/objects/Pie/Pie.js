@@ -18,12 +18,11 @@ export default class Pie extends Group {
 
       const valoresY = await leerExcel();
 
-      for (let i = 1; i < 99; i++) {
+      for (let i = 1; i < 100; i++) {
         //Asignacion de los nombres a cada objeto del pie izquierdo
         const asignacion = i.toString().padStart(2, "0");
         const objeto_existente = gltf.scene.getObjectByName(`i${asignacion}`);
-        objeto_existente.scale.y = valoresY[i - 1]; //[i - 1];
-        console.log(objeto_existente.scale.y);
+        objeto_existente.scale.y = valoresY[i - 1];
 
         //Color
         const nuevoMaterial = objeto_existente.material.clone();
@@ -76,5 +75,6 @@ async function leerExcel() {
     const valor_y = dataExcel[0 + i].Data;
     valoresY.push(valor_y);
   }
+
   return valoresY;
 }
