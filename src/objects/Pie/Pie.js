@@ -21,8 +21,13 @@ export default class Pie extends Group {
       for (let i = 1; i < 100; i++) {
         //Asignacion de los nombres a cada objeto del pie izquierdo
         const asignacion = i.toString().padStart(2, "0");
-        const objeto_existente = gltf.scene.getObjectByName(`i${asignacion}`);
+        const objeto_existente = gltf.scene.getObjectByName(`I${asignacion}`);
         objeto_existente.scale.y = valoresY[i - 1];
+
+        //Asignacion de los nombres a cada objeto del pie Derecho
+        // const asignacion = i.toString().padStart(2, "0");
+        // const objeto_existente = gltf.scene.getObjectByName(`D${asignacion}`);
+        // objeto_existente.scale.y = valoresY[i - 1];
 
         //Color
         const nuevoMaterial = objeto_existente.material.clone();
@@ -32,16 +37,16 @@ export default class Pie extends Group {
           nuevoMaterial.color.setHex(0x78288c);
         } else if (valorY >= 10 && valorY <= 20) {
           // Verde
-          nuevoMaterial.color.setHex(0x00ff00);
+          nuevoMaterial.color.setHex(0x3de63d);
         } else if (valorY >= 21 && valorY <= 40) {
           // Azul
-          nuevoMaterial.color.setHex(0x0000ff);
+          nuevoMaterial.color.setHex(0x37cdcd);
         } else if (valorY >= 41 && valorY <= 60) {
           // Amarillo
-          nuevoMaterial.color.setHex(0xffff00);
+          nuevoMaterial.color.setHex(0xff9944);
         } else if (valorY >= 61 && valorY <= 80) {
           // Naranja
-          nuevoMaterial.color.setHex(0xffa500);
+          nuevoMaterial.color.setHex(0xff4444);
         } else if (valorY >= 81 && valorY <= 99) {
           // Rojo
           nuevoMaterial.color.setHex(0xff0000);
