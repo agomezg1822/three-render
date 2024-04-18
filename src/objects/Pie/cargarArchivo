@@ -1,0 +1,75 @@
+async cargarArchivo(event) {
+    const file = event.target.files[0];
+
+    if (!file) {
+      console.error("No se ha seleccionado ningún archivo.");
+      return;
+    }
+
+    console.log("Cargando archivo:", file.name);
+    // Leer el contenido del archivo utilizando FileReader
+    const fileReader = new FileReader();
+    fileReader.onload = async (event) => {
+      const fileContent = event.target.result;
+
+      // Leer el archivo de Excel utilizando xlsx
+      const workbook = read(fileContent, { type: "binary" });
+      const workbookSheets = workbook.SheetNames;
+      console.log("Hojas disponibles:", workbookSheets);
+
+      // Obtener el elemento de selección de hoja
+      const sheetSelect = document.getElementById("sheetSelect");
+
+      // Limpiar opciones anteriores
+      sheetSelect.innerHTML = "";
+
+      // Agregar opciones al elemento de selección
+      workbookSheets.forEach((sheetName) => {
+        const option = document.createElement("option");
+        option.value = sheetName;
+        option.textContent = sheetName;
+        sheetSelect.appendChild(option);
+      });
+
+      // Cargar los datos de la primera hoja por defecto
+      const initialSheet = workbookSheets[0];
+      console.log("Cargando datos de la hoja:", initialSheet);
+      const { valoresYIzquierdoExcel, valoresYDerechoExcel } =
+        await this.leerExcel(workbook, initialSheet);
+
+      // Agregar evento de escucha al elemento de selección de hoja
+      sheetSelect.addEventListener("change", async () => {
+        const selectedSheet = sheetSelect.value;
+
+        const { valoresYIzquierdoExcel, valoresYDerechoExcel } =
+          await this.leerExcel(workbook, selectedSheet);
+
+        const loader = new GLTFLoader();
+        loader.load(MODEL, (gltf) => {
+          for (let i = 1; i < 100; i++) {
+            const asignacion = i.toString().padStart(2, "0");
+            const objetoExistenteIzquierdo = gltf.scene.getObjectByName(
+              `I${asignacion}`
+            );
+            const objetoExistenteDerecho = gltf.scene.getObjectByName(
+              `D${asignacion}`
+            );
+
+            objetoExistenteIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
+            objetoExistenteDerecho.scale.y = valoresYDerechoExcel[i - 1];
+
+            this.asignacionColor(
+              objetoExistenteIzquierdo,
+              valoresYIzquierdoExcel[i - 1]
+            );
+            this.asignacionColor(
+              objetoExistenteDerecho,
+              valoresYDerechoExcel[i - 1]
+            );
+          }
+        });
+      });
+    };
+
+    fileReader.readAsBinaryString(file);
+  }

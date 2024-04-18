@@ -55,7 +55,7 @@ export default class Pie extends Group {
     const file = await res.arrayBuffer();
     const workbook = read(file);
     const workbookSheets = workbook.SheetNames;
-    const sheetName = workbookSheets[6]; //Hoja del libro de excel
+    const sheetName = workbookSheets[1]; //Hoja del libro de excel
     const sheet = workbook.Sheets[sheetName];
 
     // Obtener datos para el pie izquierdo
@@ -73,6 +73,71 @@ export default class Pie extends Group {
     const valoresYDerechoExcel = dataExcelDerecho.map((item) => item.Data);
 
     return { valoresYIzquierdoExcel, valoresYDerechoExcel };
+  }
+
+  //Funcion para obtener el nombre de las hojas del archivo cargado
+  async obtenerNombresHojas(event) {
+    const file = event.target.files[0];
+    const data = await file.arrayBuffer();
+    const workbook = read(data);
+    const nombresHojas = workbook.SheetNames;
+    return nombresHojas;
+  }
+
+  //Funcion para obtener los valores de excel del archivo cargado y la hoja seleccionada
+  async obtenerDatosHoja(nombreHoja) {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+
+    if (file) {
+      const data = await file.arrayBuffer();
+      const workbook = read(data);
+      const sheet = workbook.Sheets[nombreHoja];
+
+      // Obtener datos para el pie izquierdo
+      const rangoIzquierdo = { s: { c: 1, r: 2 }, e: { c: 1, r: 101 } };
+      const dataExcelIzquierdo = utils.sheet_to_json(sheet, {
+        range: rangoIzquierdo,
+      });
+      const valoresYIzquierdoExcel = dataExcelIzquierdo.map(
+        (item) => item.Data
+      );
+
+      // Obtener datos para el pie derecho
+      const rangoDerecho = { s: { c: 2, r: 2 }, e: { c: 2, r: 101 } };
+      const dataExcelDerecho = utils.sheet_to_json(sheet, {
+        range: rangoDerecho,
+      });
+      const valoresYDerechoExcel = dataExcelDerecho.map((item) => item.Data);
+
+      return { valoresYIzquierdoExcel, valoresYDerechoExcel };
+    } else {
+      console.error("No se ha seleccionado ningún archivo.");
+      return null;
+    }
+  }
+
+  actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel) {
+    for (let i = 1; i < 100; i++) {
+      //Asignación de nombres a variables de cada objeto del pie izquierdo
+      const asignacion = i.toString().padStart(2, "0");
+      const objetoExistenteIzquierdo = this.getObjectByName(`I${asignacion}`);
+      //Asignación de nombres a variables de cada objeto del pie derecho
+      const objetoExistenteDerecho = this.getObjectByName(`D${asignacion}`);
+
+      // Asignación de los valores del excel a cada objeto del modelo 3D
+      objetoExistenteIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
+      objetoExistenteDerecho.scale.y = valoresYDerechoExcel[i - 1];
+
+      // Asignación de color al pie izquierdo
+      this.asignacionColor(
+        objetoExistenteIzquierdo,
+        valoresYIzquierdoExcel[i - 1]
+      );
+
+      // Asignación de color al pie derecho
+      this.asignacionColor(objetoExistenteDerecho, valoresYDerechoExcel[i - 1]);
+    }
   }
 
   //Funcion para asignar color al modelo 3D
@@ -108,3 +173,20 @@ export default class Pie extends Group {
     objeto.material = nuevoMaterial;
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const pie = new Pie();
+  const fileInput = document.getElementById("fileInput");
+  const sheetSelect = document.getElementById("sheetSelect");
+
+  fileInput.addEventListener("change", async (event) => {
+    const nombresHojas = await pie.obtenerNombresHojas(event);
+    sheetSelect.innerHTML = "";
+    nombresHojas.forEach((nombre) => {
+      const option = document.createElement("option");
+      option.value = nombre;
+      option.textContent = nombre;
+      sheetSelect.appendChild(option);
+    });
+  });
+});

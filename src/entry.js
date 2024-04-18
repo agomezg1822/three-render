@@ -44,7 +44,7 @@ window.requestAnimationFrame(onAnimationFrameHandler);
 
 // resize
 const windowResizeHanlder = () => {
-  const widthReduce = 0.7;
+  const widthReduce = 0.8;
   const { innerHeight, innerWidth } = window;
   const width = innerWidth * widthReduce;
   renderer.setSize(width, innerHeight);
