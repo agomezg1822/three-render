@@ -3,6 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import MODEL from "./Pie.glb";
 import { utils, read } from "xlsx";
 
+//Clase Pie
 export default class Pie extends Group {
   constructor() {
     const loader = new GLTFLoader();
@@ -22,34 +23,24 @@ export default class Pie extends Group {
       for (let i = 1; i < 100; i++) {
         //Asignación de nombres a variables de cada objeto del pie izquierdo
         const asignacion = i.toString().padStart(2, "0");
-        const objetoExistenteIzquierdo = gltf.scene.getObjectByName(
-          `I${asignacion}`
-        );
+        const objetoIzquierdo = gltf.scene.getObjectByName(`I${asignacion}`);
         //Asignación de nombres a variables de cada objeto del pie derecho
-        const objetoExistenteDerecho = gltf.scene.getObjectByName(
-          `D${asignacion}`
-        );
+        const objetoDerecho = gltf.scene.getObjectByName(`D${asignacion}`);
 
         // Asignación de los valores del excel a cada objeto del modelo 3D
-        objetoExistenteIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
-        objetoExistenteDerecho.scale.y = valoresYDerechoExcel[i - 1];
+        objetoIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
+        objetoDerecho.scale.y = valoresYDerechoExcel[i - 1];
 
         // Asignación de color al pie izquierdo
-        this.asignacionColor(
-          objetoExistenteIzquierdo,
-          valoresYIzquierdoExcel[i - 1]
-        );
+        this.asignacionColor(objetoIzquierdo, valoresYIzquierdoExcel[i - 1]);
 
         // Asignación de color al pie derecho
-        this.asignacionColor(
-          objetoExistenteDerecho,
-          valoresYDerechoExcel[i - 1]
-        );
+        this.asignacionColor(objetoDerecho, valoresYDerechoExcel[i - 1]);
       }
     });
   }
 
-  //Funcion para leer excel
+  //Funcion para leer excel original
   async leerExcel() {
     const res = await fetch("/datos.xlsx");
     const file = await res.arrayBuffer();
@@ -75,6 +66,40 @@ export default class Pie extends Group {
     return { valoresYIzquierdoExcel, valoresYDerechoExcel };
   }
 
+  //Funcion para asignar color al modelo 3D
+  asignacionColor(objeto, valorY) {
+    const nuevoMaterial = objeto.material.clone();
+
+    if (valorY > 0 && valorY <= 10) {
+      nuevoMaterial.color.setHex(0x000066); // 1. Azul
+    } else if (valorY > 10 && valorY <= 20) {
+      nuevoMaterial.color.setHex(0x00ffff); // 2. Cian
+    } else if (valorY > 20 && valorY <= 30) {
+      nuevoMaterial.color.setHex(0x00ff00); // 3. Verde
+    } else if (valorY > 30 && valorY <= 40) {
+      nuevoMaterial.color.setHex(0xffff00); // 4. Amarillo
+    } else if (valorY > 50 && valorY <= 60) {
+      nuevoMaterial.color.setHex(0xff8000); // 5. Naranja
+    } else if (valorY > 70 && valorY <= 80) {
+      nuevoMaterial.color.setHex(0xff0000); // 6. Rojo
+    } else if (valorY > 80 && valorY <= 90) {
+      nuevoMaterial.color.setHex(0xff3399); // 7. Rosa oscuro
+    } else if (valorY > 90 && valorY <= 100) {
+      nuevoMaterial.color.setHex(0xff66cc); // 8.
+    } else if (valorY > 100 && valorY <= 125) {
+      nuevoMaterial.color.setHex(0xff99ff); // 9.
+    } else if (valorY > 125 && valorY <= 150) {
+      nuevoMaterial.color.setHex(0xcc66ff); // 10. Rosa
+    } else if (valorY > 150 && valorY <= 200) {
+      nuevoMaterial.color.setHex(0x9900ff); // 11. Violeta
+    } else {
+      nuevoMaterial.color.setHex(0x0000ff); // Blanco
+    }
+
+    objeto.material = nuevoMaterial;
+  }
+
+  //Funciones para leer el nuevo documento
   //Funcion para obtener el nombre de las hojas del archivo cargado
   async obtenerNombresHojas(event) {
     const file = event.target.files[0];
@@ -84,7 +109,7 @@ export default class Pie extends Group {
     return nombresHojas;
   }
 
-  //Funcion para obtener los valores de excel del archivo cargado y la hoja seleccionada
+  // //Funcion para obtener los valores de excel del archivo cargado y la hoja seleccionada
   async obtenerDatosHoja(nombreHoja) {
     const fileInput = document.getElementById("fileInput");
     const file = fileInput.files[0];
@@ -125,52 +150,31 @@ export default class Pie extends Group {
       //Asignación de nombres a variables de cada objeto del pie derecho
       const objetoExistenteDerecho = this.getObjectByName(`D${asignacion}`);
 
-      // Asignación de los valores del excel a cada objeto del modelo 3D
-      objetoExistenteIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
-      objetoExistenteDerecho.scale.y = valoresYDerechoExcel[i - 1];
+      // Check if the objects exist before trying to access their properties
+      if (objetoExistenteIzquierdo && objetoExistenteDerecho) {
+        // Asignación de los valores del excel a cada objeto del modelo 3D
+        objetoExistenteIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
+        objetoExistenteDerecho.scale.y = valoresYDerechoExcel[i - 1];
 
-      // Asignación de color al pie izquierdo
-      this.asignacionColor(
-        objetoExistenteIzquierdo,
-        valoresYIzquierdoExcel[i - 1]
-      );
+        // Asignación de color al pie izquierdo
+        this.asignacionColor(
+          objetoExistenteIzquierdo,
+          valoresYIzquierdoExcel[i - 1]
+        );
 
-      // Asignación de color al pie derecho
-      this.asignacionColor(objetoExistenteDerecho, valoresYDerechoExcel[i - 1]);
+        // Asignación de color al pie derecho
+        this.asignacionColor(
+          objetoExistenteDerecho,
+          valoresYDerechoExcel[i - 1]
+        );
+
+        console.log(
+          "Actualizar modelo con datos:",
+          valoresYIzquierdoExcel,
+          valoresYDerechoExcel
+        );
+      }
     }
-  }
-
-  //Funcion para asignar color al modelo 3D
-  asignacionColor(objeto, valorY) {
-    const nuevoMaterial = objeto.material.clone();
-
-    if (valorY > 0 && valorY <= 10) {
-      nuevoMaterial.color.setHex(0x000066); // 1. Azul
-    } else if (valorY > 10 && valorY <= 20) {
-      nuevoMaterial.color.setHex(0x00ffff); // 2. Cian
-    } else if (valorY > 20 && valorY <= 30) {
-      nuevoMaterial.color.setHex(0x00ff00); // 3. Verde
-    } else if (valorY > 30 && valorY <= 40) {
-      nuevoMaterial.color.setHex(0xffff00); // 4. Amarillo
-    } else if (valorY > 50 && valorY <= 60) {
-      nuevoMaterial.color.setHex(0xff8000); // 5. Naranja
-    } else if (valorY > 70 && valorY <= 80) {
-      nuevoMaterial.color.setHex(0xff0000); // 6. Rojo
-    } else if (valorY > 80 && valorY <= 90) {
-      nuevoMaterial.color.setHex(0xff3399); // 7. Rosa oscuro
-    } else if (valorY > 90 && valorY <= 100) {
-      nuevoMaterial.color.setHex(0xff66cc); // 8.
-    } else if (valorY > 100 && valorY <= 125) {
-      nuevoMaterial.color.setHex(0xff99ff); // 9.
-    } else if (valorY > 125 && valorY <= 150) {
-      nuevoMaterial.color.setHex(0xcc66ff); // 10. Rosa
-    } else if (valorY > 150 && valorY <= 200) {
-      nuevoMaterial.color.setHex(0x9900ff); // 11. Violeta
-    } else {
-      nuevoMaterial.color.setHex(0x0000ff); // Blanco
-    }
-
-    objeto.material = nuevoMaterial;
   }
 }
 
