@@ -27,9 +27,14 @@ scene.add(seedScene);
 camera.position.set(-15, 60, 50);
 camera.lookAt(new Vector3(0, 0, 0));
 
+//OrbitControls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.1;
+controls.minDistance = 10;
+controls.maxDistance = 100;
+controls.maxPolarAngle = Math.PI / 2.1;
+controls.enablePan = false;
 
 // renderer
 renderer.setPixelRatio(window.devicePixelRatio);
