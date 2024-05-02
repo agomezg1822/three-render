@@ -1,3 +1,12 @@
+/**
+ * entry.js
+ *
+ * This is the first file loaded. It sets up the Renderer,
+ * Scene and Camera. It also starts the render loop and
+ * handles window resizes.
+ *
+ */
+
 import { WebGLRenderer, PerspectiveCamera, Scene, Vector3 } from "three";
 import SeedScene from "./objects/Scene.js";
 import { OrbitControls } from "./orbitcontrols.js"; //ver como bloquear la rotacion de la pagina del usuario.
@@ -15,7 +24,7 @@ const seedScene = new SeedScene();
 scene.add(seedScene);
 
 // camera
-camera.position.set(-15, 60, 50);
+camera.position.set(10, 10, 20);
 camera.lookAt(new Vector3(0, 0, 0));
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -44,9 +53,6 @@ const windowResizeHanlder = () => {
 };
 windowResizeHanlder();
 window.addEventListener("resize", windowResizeHanlder);
-
-// Pass the scene to the rightSection module
-// rightSection.setScene(scene);
 
 // dom
 document.body.style.margin = 0;
