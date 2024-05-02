@@ -24,7 +24,7 @@ const seedScene = new SeedScene();
 scene.add(seedScene);
 
 // camera
-camera.position.set(10, 10, 20);
+camera.position.set(-15, 60, 50);
 camera.lookAt(new Vector3(0, 0, 0));
 
 const controls = new OrbitControls(camera, renderer.domElement);

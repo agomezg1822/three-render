@@ -1,6 +1,5 @@
 import { title } from "./components/title";
 import Pie from "./objects/Pie/Pie.js";
-import { read, utils } from "xlsx";
 
 const template = `
   ${title(1, "Comparativa de pies")}
@@ -33,7 +32,7 @@ sheetSelect.addEventListener("change", async (event) => {
       const { valoresYIzquierdoExcel, valoresYDerechoExcel } = datos;
       console.log("Datos del pie izquierdo:", valoresYIzquierdoExcel);
       console.log("Datos del pie derecho:", valoresYDerechoExcel);
-      //pie.actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel);
+      pie.actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel);
     }
   } else {
     console.error("No se ha seleccionado ningún archivo.");

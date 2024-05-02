@@ -47,6 +47,29 @@ export default class Pie extends Group {
         );
       }
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const fileInput = document.getElementById("fileInput");
+      const sheetSelect = document.getElementById("sheetSelect");
+
+      fileInput.addEventListener("change", async (event) => {
+        const nombresHojas = await this.obtenerNombresHojas(event);
+        sheetSelect.innerHTML = "";
+        nombresHojas.forEach((nombre) => {
+          const option = document.createElement("option");
+          option.value = nombre;
+          option.textContent = nombre;
+          sheetSelect.appendChild(option);
+        });
+      });
+
+      sheetSelect.addEventListener("change", async () => {
+        const selectedSheet = sheetSelect.value;
+        const { valoresYIzquierdoExcel, valoresYDerechoExcel } =
+          await this.obtenerDatosHoja(selectedSheet);
+        this.actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel);
+      });
+    });
   }
 
   //Funcion para leer excel
@@ -55,7 +78,7 @@ export default class Pie extends Group {
     const file = await res.arrayBuffer();
     const workbook = read(file);
     const workbookSheets = workbook.SheetNames;
-    const sheetName = workbookSheets[1]; //Hoja del libro de excel
+    const sheetName = workbookSheets[6]; //Hoja del libro de excel
     const sheet = workbook.Sheets[sheetName];
 
     // Obtener datos para el pie izquierdo
@@ -173,20 +196,3 @@ export default class Pie extends Group {
     objeto.material = nuevoMaterial;
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const pie = new Pie();
-  const fileInput = document.getElementById("fileInput");
-  const sheetSelect = document.getElementById("sheetSelect");
-
-  fileInput.addEventListener("change", async (event) => {
-    const nombresHojas = await pie.obtenerNombresHojas(event);
-    sheetSelect.innerHTML = "";
-    nombresHojas.forEach((nombre) => {
-      const option = document.createElement("option");
-      option.value = nombre;
-      option.textContent = nombre;
-      sheetSelect.appendChild(option);
-    });
-  });
-});
