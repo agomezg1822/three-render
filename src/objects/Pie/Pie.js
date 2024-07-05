@@ -30,7 +30,7 @@ export default class Pie extends Group {
           `D${asignacion}`
         );
 
-        // Asignación de los valores del excel a cada objeto del modelo 3D
+        // Asignación de los valores del archivo a cada objeto del modelo 3D
         objetoExistenteIzquierdo.scale.y = valoresYIzquierdoExcel[i - 1];
         objetoExistenteDerecho.scale.y = valoresYDerechoExcel[i - 1];
 
@@ -72,13 +72,13 @@ export default class Pie extends Group {
     });
   }
 
-  //Funcion para leer excel
+  // //Funcion para leer el archivo preexistente
   async leerExcel() {
     const res = await fetch("/datos.xlsx");
     const file = await res.arrayBuffer();
     const workbook = read(file);
     const workbookSheets = workbook.SheetNames;
-    const sheetName = workbookSheets[6]; //Hoja del libro de excel
+    const sheetName = workbookSheets[1]; //Hoja del libro de excel
     const sheet = workbook.Sheets[sheetName];
 
     // Obtener datos para el pie izquierdo
@@ -107,7 +107,7 @@ export default class Pie extends Group {
     return nombresHojas;
   }
 
-  //Funcion para obtener los valores de excel del archivo cargado y la hoja seleccionada
+  //Funcion para obtener los valores de archivo archivo cargado y la hoja seleccionada
   async obtenerDatosHoja(nombreHoja) {
     const fileInput = document.getElementById("fileInput");
     const file = fileInput.files[0];
@@ -140,6 +140,7 @@ export default class Pie extends Group {
     }
   }
 
+  //Funcion para actualizar el modelo 3D con los datos obtenidos del archivo cargado
   actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel) {
     for (let i = 1; i < 100; i++) {
       //Asignación de nombres a variables de cada objeto del pie izquierdo
@@ -180,15 +181,15 @@ export default class Pie extends Group {
     } else if (valorY > 70 && valorY <= 80) {
       nuevoMaterial.color.setHex(0xff0000); // 6. Rojo
     } else if (valorY > 80 && valorY <= 90) {
-      nuevoMaterial.color.setHex(0xff3399); // 7. Rosa oscuro
+      nuevoMaterial.color.setHex(0xff3399); // 7. Rosa neon
     } else if (valorY > 90 && valorY <= 100) {
-      nuevoMaterial.color.setHex(0xff66cc); // 8.
+      nuevoMaterial.color.setHex(0xff66cc); // 8. Rosa fuerte
     } else if (valorY > 100 && valorY <= 125) {
-      nuevoMaterial.color.setHex(0xff99ff); // 9.
+      nuevoMaterial.color.setHex(0xff99ff); // 9. Lavanda rosado
     } else if (valorY > 125 && valorY <= 150) {
-      nuevoMaterial.color.setHex(0xcc66ff); // 10. Rosa
+      nuevoMaterial.color.setHex(0xcc66ff); // 10. Lila
     } else if (valorY > 150 && valorY <= 200) {
-      nuevoMaterial.color.setHex(0x9900ff); // 11. Violeta
+      nuevoMaterial.color.setHex(0x9900ff); // 11. Purpura neon
     } else {
       nuevoMaterial.color.setHex(0x0000ff); // Blanco
     }
@@ -196,3 +197,5 @@ export default class Pie extends Group {
     objeto.material = nuevoMaterial;
   }
 }
+
+//module.exports = leerExcel;

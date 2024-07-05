@@ -9,7 +9,7 @@
 
 import { WebGLRenderer, PerspectiveCamera, Scene, Vector3 } from "three";
 import SeedScene from "./objects/Scene.js";
-import { OrbitControls } from "./orbitcontrols.js"; //ver como bloquear la rotacion de la pagina del usuario.
+import { OrbitControls } from "./orbitcontrols.js";
 import { loadStyles } from "./loadStyles.js";
 import { rightSection } from "./rightSection.js";
 

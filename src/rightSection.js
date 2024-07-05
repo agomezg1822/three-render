@@ -4,7 +4,7 @@ import Pie from "./objects/Pie/Pie.js";
 const template = `
   ${title(1, "Comparativa de pies")}
   <div>
-    <label for="fileInput">Seleccionar archivo:</label>
+    <label for="fileInput">Cargar un archivo:</label>
     <input type="file" id="fileInput" accept=".xlsx">
   </div>
   <br><br>
@@ -30,8 +30,7 @@ sheetSelect.addEventListener("change", async (event) => {
 
     if (datos) {
       const { valoresYIzquierdoExcel, valoresYDerechoExcel } = datos;
-      console.log("Datos del pie izquierdo:", valoresYIzquierdoExcel);
-      console.log("Datos del pie derecho:", valoresYDerechoExcel);
+
       pie.actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel);
     }
   } else {

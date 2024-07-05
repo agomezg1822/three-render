@@ -12,7 +12,7 @@ export default class SeedScene extends Group {
     this.add(lights, pie);
   }
 
-  update(timeStamp) {
-    this.rotation.y = timeStamp / 10000;
-  }
+  // update(timeStamp) {
+  //   this.rotation.y = timeStamp / 10000;
+  // }
 }

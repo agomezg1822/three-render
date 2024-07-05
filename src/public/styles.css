@@ -1,37 +1,28 @@
-/* Estilos minimalistas con tonos azules */
 
-/* Establecer el cuerpo (body) como un contenedor flex para el diseño */
 body {
-
     display: flex;
-    
-  
 }
-
-  
-  /* Estilo para las etiquetas (label) */
   label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #4a90e2; /* Color azul tranquilo */
+    color: #4a90e2; 
   }
   
-  /* Estilo para los selectores (select) */
+  
   select {
     width: 100%;
     padding: 8px;
     margin-bottom: 12px;
     box-sizing: border-box;
-    border: 1px solid #cdd8e1; /* Borde azul claro */
+    border: 1px solid #cdd8e1; 
     border-radius: 4px;
     font-size: 14px;
-    background-color: #edf4fa; /* Fondo azul claro */
-    color: #4a90e2; /* Color de texto azul tranquilo */
+    background-color: #edf4fa; 
+    color: #4a90e2; 
     cursor: pointer;
   }
   
-/* Estilo personalizado para el botón de input tipo file */
 input[type="file"] {
     width: 100%;
     padding: 10px;
@@ -41,21 +32,19 @@ input[type="file"] {
     background-color: #edf4fa;
     color: #4a90e2;
     cursor: pointer;
-    position: relative; /* Permite posicionar el botón de forma relativa */
-    overflow: hidden; /* Oculta el contenido que sobresale del contenedor */
+    position: relative; 
+    overflow: hidden; 
 }
 
-/* Estilo para el texto del botón de input tipo file */
 .input-file-text {
     display: inline-block;
     overflow: hidden;
-    text-overflow: ellipsis; /* Trunca el texto si es demasiado largo */
-    white-space: nowrap; /* Evita que el texto se desborde */
-    width: calc(100% - 30px); /* Calcula el ancho del texto */
-    padding-right: 10px; /* Añade espacio a la derecha del texto */
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    width: calc(100% - 30px); 
+    padding-right: 10px;
 }
 
-/* Estilo para el botón de input tipo file */
 .input-file-button {
     position: absolute;
     top: 0;
@@ -68,7 +57,6 @@ input[type="file"] {
     cursor: pointer;
 }
 
-/* Estilo al enfocar el botón de input tipo file */
 input[type="file"]:focus + .input-file-button {
     outline: none;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
