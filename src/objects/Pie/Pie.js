@@ -78,7 +78,7 @@ export default class Pie extends Group {
     const file = await res.arrayBuffer();
     const workbook = read(file);
     const workbookSheets = workbook.SheetNames;
-    const sheetName = workbookSheets[1]; //Hoja del libro de excel
+    const sheetName = workbookSheets[0]; //Hoja del libro de excel
     const sheet = workbook.Sheets[sheetName];
 
     // Obtener datos para el pie izquierdo
@@ -168,34 +168,32 @@ export default class Pie extends Group {
   asignacionColor(objeto, valorY) {
     const nuevoMaterial = objeto.material.clone();
 
-    if (valorY > 0 && valorY <= 10) {
-      nuevoMaterial.color.setHex(0x000066); // 1. Azul
+    if (valorY > -1 && valorY <= 10) {
+      nuevoMaterial.color.setHex(0x783d67);
     } else if (valorY > 10 && valorY <= 20) {
-      nuevoMaterial.color.setHex(0x00ffff); // 2. Cian
+      nuevoMaterial.color.setHex(0x67597f);
     } else if (valorY > 20 && valorY <= 30) {
-      nuevoMaterial.color.setHex(0x00ff00); // 3. Verde
+      nuevoMaterial.color.setHex(0x597395);
     } else if (valorY > 30 && valorY <= 40) {
-      nuevoMaterial.color.setHex(0xffff00); // 4. Amarillo
+      nuevoMaterial.color.setHex(0x3f9eba);
+    } else if (valorY > 40 && valorY <= 50) {
+      nuevoMaterial.color.setHex(0x5b8d89);
     } else if (valorY > 50 && valorY <= 60) {
-      nuevoMaterial.color.setHex(0xff8000); // 5. Naranja
+      nuevoMaterial.color.setHex(0x6f8368);
+    } else if (valorY > 60 && valorY <= 70) {
+      nuevoMaterial.color.setHex(0x8c7236);
     } else if (valorY > 70 && valorY <= 80) {
-      nuevoMaterial.color.setHex(0xff0000); // 6. Rojo
+      nuevoMaterial.color.setHex(0xac5e02);
     } else if (valorY > 80 && valorY <= 90) {
-      nuevoMaterial.color.setHex(0xff3399); // 7. Rosa neon
+      nuevoMaterial.color.setHex(0xb55411);
     } else if (valorY > 90 && valorY <= 100) {
-      nuevoMaterial.color.setHex(0xff66cc); // 8. Rosa fuerte
-    } else if (valorY > 100 && valorY <= 125) {
-      nuevoMaterial.color.setHex(0xff99ff); // 9. Lavanda rosado
-    } else if (valorY > 125 && valorY <= 150) {
-      nuevoMaterial.color.setHex(0xcc66ff); // 10. Lila
-    } else if (valorY > 150 && valorY <= 200) {
-      nuevoMaterial.color.setHex(0x9900ff); // 11. Purpura neon
+      nuevoMaterial.color.setHex(0xbf4a20);
+    } else if (valorY > 100 && valorY <= 200) {
+      nuevoMaterial.color.setHex(0xcc3a37);
     } else {
-      nuevoMaterial.color.setHex(0x0000ff); // Blanco
+      nuevoMaterial.color.setHex(0xffffff);
     }
 
     objeto.material = nuevoMaterial;
   }
 }
-
-//module.exports = leerExcel;

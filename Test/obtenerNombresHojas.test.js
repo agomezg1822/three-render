@@ -1,48 +1,33 @@
-// Mock de xlsx en tu archivo de prueba (tests/obtenerNombresHojas.test.js)
+// obtenerNombresHojas.test.js
+
+// Importamos la clase Pie y la función read de xlsx
+import Pie from "../src/objects/Pie/Pie";
+import { read } from "xlsx";
+
+// Mockeamos la función read de xlsx
 jest.mock("xlsx", () => ({
-  read: jest.fn(), // Mock para la función read de xlsx
+  read: jest.fn(() => ({
+    SheetNames: ["Sheet1", "Sheet2"],
+  })),
 }));
 
-// También puedes necesitar mockear fetch si obtienes el archivo de nombres de hojas desde el servidor
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    arrayBuffer: () => Promise.resolve(new ArrayBuffer()),
-  })
-);
-
-// tests/obtenerNombresHojas.test.js
-
-import { obtenerNombresHojas } from "../src/objects/Pie/Pie"; // Ajusta la ruta según donde esté tu función obtenerNombresHojas
-import xlsx from "xlsx";
-
 describe("obtenerNombresHojas", () => {
-  beforeEach(() => {
-    // Restablecer mocks entre pruebas
-    jest.clearAllMocks();
-  });
-
   it("debería obtener los nombres de las hojas correctamente", async () => {
-    // Configurar el mock de xlsx para devolver nombres de hojas simulados
-    const mockWorkbook = {
-      SheetNames: ["Sheet1", "Sheet2"],
-    };
-    xlsx.read.mockReturnValue(mockWorkbook);
+    // Configuramos un archivo simulado para el evento mock
+    const mockFile = new File([], "datos.xlsx");
+    const mockEvent = { target: { files: [mockFile] } };
 
-    // Simular un evento de cambio de archivo
-    const mockEvent = {
-      target: {
-        files: [new File([], "datos.xlsx")], // Simular un archivo
-      },
-    };
+    // Creamos una instancia de la clase Pie
+    const pieInstance = new Pie();
 
-    // Llamar a la función y esperar la respuesta
-    const nombresHojas = await obtenerNombresHojas(mockEvent);
+    // Llamamos a la función y esperamos la respuesta
+    const nombresHojas = await pieInstance.obtenerNombresHojas(mockEvent);
 
-    // Verificar que los nombres de hojas devueltos sean correctos
+    // Verificamos que los nombres de las hojas devueltos sean correctos
     expect(nombresHojas).toEqual(["Sheet1", "Sheet2"]);
 
-    // Verificar que read de xlsx fue llamado correctamente
-    expect(xlsx.read).toHaveBeenCalledTimes(1);
-    expect(xlsx.read).toHaveBeenCalledWith(expect.any(ArrayBuffer));
+    // Verificamos que read de xlsx fue llamado correctamente
+    expect(read).toHaveBeenCalledTimes(1);
+    expect(read).toHaveBeenCalledWith(expect.any(ArrayBuffer));
   });
 });

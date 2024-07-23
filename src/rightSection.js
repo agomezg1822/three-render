@@ -12,6 +12,10 @@ const template = `
     <label for="sheetSelect">Seleccionar hoja:</label>
     <select id="sheetSelect"></select>
   </div>
+  <br><br>
+  <div>
+    <a id="downloadLink" href="datos.xlsx" download="datos.xlsx">Descargar Plantilla</a>
+  </div>
 `;
 
 const rightSection = document.createElement("section");
