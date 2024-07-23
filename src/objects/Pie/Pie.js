@@ -169,27 +169,27 @@ export default class Pie extends Group {
     const nuevoMaterial = objeto.material.clone();
 
     if (valorY > -1 && valorY <= 10) {
-      nuevoMaterial.color.setHex(0x783d67);
+      nuevoMaterial.color.setHex(0x783d67); //purpura
     } else if (valorY > 10 && valorY <= 20) {
-      nuevoMaterial.color.setHex(0x67597f);
+      nuevoMaterial.color.setHex(0x67597f); //purpura grisaceo
     } else if (valorY > 20 && valorY <= 30) {
-      nuevoMaterial.color.setHex(0x597395);
+      nuevoMaterial.color.setHex(0x597395); //azul grisaceo
     } else if (valorY > 30 && valorY <= 40) {
-      nuevoMaterial.color.setHex(0x3f9eba);
+      nuevoMaterial.color.setHex(0x3f9eba); //azul verdoso
     } else if (valorY > 40 && valorY <= 50) {
-      nuevoMaterial.color.setHex(0x5b8d89);
+      nuevoMaterial.color.setHex(0x5b8d89); //verde grisaceo
     } else if (valorY > 50 && valorY <= 60) {
-      nuevoMaterial.color.setHex(0x6f8368);
+      nuevoMaterial.color.setHex(0x6f8368); //verde oliva
     } else if (valorY > 60 && valorY <= 70) {
-      nuevoMaterial.color.setHex(0x8c7236);
+      nuevoMaterial.color.setHex(0x8c7236); //marron dorado
     } else if (valorY > 70 && valorY <= 80) {
-      nuevoMaterial.color.setHex(0xac5e02);
+      nuevoMaterial.color.setHex(0xac5e02); //marron anaranjado
     } else if (valorY > 80 && valorY <= 90) {
-      nuevoMaterial.color.setHex(0xb55411);
+      nuevoMaterial.color.setHex(0xb55411); //naranja rojizo
     } else if (valorY > 90 && valorY <= 100) {
-      nuevoMaterial.color.setHex(0xbf4a20);
+      nuevoMaterial.color.setHex(0xbf4a20); //rojo anaranjado
     } else if (valorY > 100 && valorY <= 200) {
-      nuevoMaterial.color.setHex(0xcc3a37);
+      nuevoMaterial.color.setHex(0xcc3a37); //rojo brillante
     } else {
       nuevoMaterial.color.setHex(0xffffff);
     }
