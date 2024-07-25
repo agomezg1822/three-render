@@ -4,7 +4,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const buildPath = "./docs/";
 
-const base = process.env.BUILD === "production" ? "/three-render/" : false;
+const base =
+  process.env.BUILD === "production"
+    ? "https://agomezg1822.github.io/three-render/"
+    : false;
 
 module.exports = {
   entry: ["./src/entry.js"],
