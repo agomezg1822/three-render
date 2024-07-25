@@ -52,23 +52,8 @@ module.exports = {
             <link rel="stylesheet" href="styles.css"> <!-- Ruta relativa sin barra inclinada inicial -->
           </head>
           <body>
-            <!-- Los scripts se inyectarán aquí -->
-            <script defer src="${htmlWebpackPlugin.files.js[0]}"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-            <script>
-              fetch('${base}datos.xlsx')
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                  }
-                  return response.arrayBuffer();
-                })
-                .then(data => {
-                  const workbook = XLSX.read(data, { type: 'array' });
-                  console.log(workbook);
-                })
-                .catch(error => console.error('Error al cargar el archivo datos.xlsx:', error));
-            </script>
+          
+              
           </body>
         </html>`,
     }),
