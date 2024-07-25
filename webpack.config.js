@@ -6,7 +6,7 @@ const buildPath = "./docs/";
 
 const base =
   process.env.BUILD === "production"
-    ? "https://agomezg1822.github.io/three-render/"
+    ? "https://agomezg1822.github.io/visualizacion-3d/"
     : false;
 
 module.exports = {
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Visualizacion 3D de la presion plantar",
+      title: "Visualizacion 3D",
       base,
     }),
     new CopyPlugin({
