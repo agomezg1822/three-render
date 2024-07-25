@@ -38,7 +38,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ title: "Aplicacion 3D", base }),
+    new HtmlWebpackPlugin({
+      title: "Visualizacion 3D de la presion plantar",
+      base,
+    }),
     new CopyPlugin({
       patterns: [{ from: "src/public", to: "" }],
     }),
