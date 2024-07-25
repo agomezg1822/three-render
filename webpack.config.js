@@ -4,6 +4,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const buildPath = "./docs/";
 
+const base = process.env.BUILD === "production" ? "/three-render/" : false;
+
 module.exports = {
   entry: ["./src/entry.js"],
   output: {
@@ -33,7 +35,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ title: "three-seed project" }),
+    new HtmlWebpackPlugin({ title: "Aplicacion 3D", base }),
     new CopyPlugin({
       patterns: [{ from: "src/public", to: "" }],
     }),

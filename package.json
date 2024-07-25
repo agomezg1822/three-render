@@ -12,7 +12,7 @@
   "scripts": {
     "start": "webpack serve",
     "prebuild": "rimraf ./docs && mkdir ./docs",
-    "build": "webpack --mode production",
+    "build": "BUILD=production webpack --mode production",
     "test": "jest"
   },
   "jest": {
