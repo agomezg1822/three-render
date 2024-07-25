@@ -108,6 +108,17 @@ module.exports = {
           </head>
           <body>
             <!-- Los scripts se inyectarán aquí -->
+            <script defer src="main.[hash].js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+            <script>
+              fetch('datos.xlsx')
+                  .then(response => response.arrayBuffer())
+                  .then(data => {
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    console.log(workbook);
+            })
+            .catch(error => console.error('Error al cargar el archivo datos.xlsx:', error));
+            </script>
           </body>
         </html>
       `,
