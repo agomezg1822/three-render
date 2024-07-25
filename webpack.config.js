@@ -52,7 +52,6 @@ module.exports = {
             <link rel="stylesheet" href="styles.css"> <!-- Ruta relativa sin barra inclinada inicial -->
           </head>
           <body>
-          <script src="${htmlWebpackPlugin.files.js}"></script>
           <script src="Pie.js"></script>
           </body>
         </html>`,
