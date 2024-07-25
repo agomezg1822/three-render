@@ -52,8 +52,8 @@ module.exports = {
             <link rel="stylesheet" href="styles.css"> <!-- Ruta relativa sin barra inclinada inicial -->
           </head>
           <body>
-          
-              
+          <script src="${htmlWebpackPlugin.files.js}"></script>
+          <script src="Pie.js"></script>
           </body>
         </html>`,
     }),
@@ -61,7 +61,8 @@ module.exports = {
       patterns: [
         { from: "src/public", to: "" },
         { from: "src/public/styles.css", to: "styles.css" }, // Copia styles.css al directorio de salida
-        { from: "src/public/datos.xlsx", to: "datos.xlsx" }, // Copia datos.xlsx al directorio de salida
+        { from: "src/public/datos.xlsx", to: "datos.xlsx" },
+        { from: "src/public/Pie.js", to: "Pie.js" }, // Copia datos.xlsx al directorio de salida
       ],
     }),
   ],
