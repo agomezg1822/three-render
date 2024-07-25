@@ -4,10 +4,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const buildPath = "./docs/";
 
-const base =
-  process.env.BUILD === "production"
-    ? "https://agomezg1822.github.io/visualizacion-3d/"
-    : false;
+const base = process.env.BUILD === "production" ? "/visualizacion-3d/" : false;
 
 module.exports = {
   entry: ["./src/entry.js"],
