@@ -56,7 +56,7 @@ module.exports = {
             <script defer src="${htmlWebpackPlugin.files.js[0]}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
             <script>
-              fetch('datos.xlsx')
+              fetch('${base}datos.xlsx')
                 .then(response => {
                   if (!response.ok) {
                     throw new Error('Network response was not ok');
