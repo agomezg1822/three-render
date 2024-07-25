@@ -1,7 +1,14 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Visualizacion 3D</title><base href="https://agomezg1822.github.io/visualizacion-3d/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="styles.css"><base href="https://agomezg1822.github.io/visualizacion-3d/"></head><body><script defer="defer" src="main.[hash].js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/shim.min.js"></script><script>fetch('datos.xlsx')
-                  .then(response => response.arrayBuffer())
-                  .then(data => {
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    console.log(workbook);
-            })
-            .catch(error => console.error('Error al cargar el archivo datos.xlsx:', error));</script><script defer="defer" src="/visualizacion-3d/main.eba4574af68a14ca1f3b.js"></script></body></html>
+<!doctype html><html><head><meta charset="utf-8"><title>Visualizacion 3D</title><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="styles.css"><base href="https://agomezg1822.github.io/visualizacion-3d/"></head><body><script defer="defer" src="main.[hash].js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script><script>const fileUrl = 'datos.xlsx';
+              console.log('Fetching:', fileUrl);
+              fetch(fileUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.arrayBuffer();
+                })
+                .then(data => {
+                  const workbook = XLSX.read(data, { type: 'array' });
+                  console.log(workbook);
+                })
+                .catch(error => console.error('Error al cargar el archivo datos.xlsx:', error));</script><script defer="defer" src="/visualizacion-3d/main.eba4574af68a14ca1f3b.js"></script></body></html>

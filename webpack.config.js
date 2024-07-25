@@ -97,30 +97,38 @@ module.exports = {
       base: isProduction ? base : "/",
       inject: "body", // Inyecta el script en el cuerpo
       templateContent: ({ htmlWebpackPlugin }) => `
-        <!doctype html>
+                <!doctype html>
         <html>
           <head>
             <meta charset="utf-8">
-            <title>${htmlWebpackPlugin.options.title}</title>
-            <base href="${htmlWebpackPlugin.options.base}">
+            <title>Visualizacion 3D</title>
+            <base href="/">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="styles.css"> <!-- Ruta relativa sin barra inclinada inicial -->
           </head>
           <body>
             <!-- Los scripts se inyectarán aquí -->
             <script defer src="main.[hash].js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/shim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
             <script>
-              fetch('datos.xlsx')
-                  .then(response => response.arrayBuffer())
-                  .then(data => {
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    console.log(workbook);
-            })
-            .catch(error => console.error('Error al cargar el archivo datos.xlsx:', error));
+              const fileUrl = 'datos.xlsx';
+              console.log('Fetching:', fileUrl);
+              fetch(fileUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.arrayBuffer();
+                })
+                .then(data => {
+                  const workbook = XLSX.read(data, { type: 'array' });
+                  console.log(workbook);
+                })
+                .catch(error => console.error('Error al cargar el archivo datos.xlsx:', error));
             </script>
           </body>
         </html>
+
       `,
     }),
     new CopyPlugin({
