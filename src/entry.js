@@ -64,4 +64,4 @@ document.body.style.margin = 0;
 document.body.appendChild(renderer.domElement);
 document.body.appendChild(rightSection);
 
-loadStyles("customCss", "/styles.css");
+loadStyles("customCss", "styles.css");
