@@ -74,7 +74,7 @@ export default class Pie extends Group {
 
   // //Funcion para leer el archivo preexistente
   async leerExcel() {
-    const res = await fetch("/datos.xlsx");
+    const res = await fetch("datos.xlsx");
     const file = await res.arrayBuffer();
     const workbook = read(file);
     const workbookSheets = workbook.SheetNames;

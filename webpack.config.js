@@ -41,6 +41,25 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Visualizacion 3D",
       base,
+      templateContent: ({ htmlWebpackPlugin }) => `
+        <!doctype html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>${htmlWebpackPlugin.options.title}</title>
+            <base href="${htmlWebpackPlugin.options.base}">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="styles.css"> <!-- Ruta relativa sin barra inclinada inicial -->
+          </head>
+          <body>
+          <script src="Pie.js"></script>
+          <script>
+          if(window) {
+            window.baseURL = ${base}
+          }
+          </script>
+          </body>
+        </html>`,
     }),
     new CopyPlugin({
       patterns: [
