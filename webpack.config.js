@@ -66,7 +66,6 @@ module.exports = {
         { from: "src/public", to: "" },
         { from: "src/public/styles.css", to: "styles.css" }, // Copia styles.css al directorio de salida
         { from: "src/public/datos.xlsx", to: "datos.xlsx" },
-        { from: "src/public/Pie.js", to: "Pie.js" }, // Copia datos.xlsx al directorio de salida
       ],
     }),
   ],

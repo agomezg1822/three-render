@@ -65,9 +65,17 @@ export default class Pie extends Group {
 
       sheetSelect.addEventListener("change", async () => {
         const selectedSheet = sheetSelect.value;
-        const { valoresYIzquierdoExcel, valoresYDerechoExcel } =
+        const { valoresYIzquierdoExcel, valoresYDerechoExcel, metadata } =
           await this.obtenerDatosHoja(selectedSheet);
         this.actualizarModelo(valoresYIzquierdoExcel, valoresYDerechoExcel);
+
+        // Update UI with the metadata
+        document.getElementById("nombre").textContent = metadata.NOMBRE || "";
+        document.getElementById("peso").textContent = metadata.PESO || "";
+        document.getElementById("fecha").textContent = metadata.FECHA || "";
+        document.getElementById("edad").textContent = metadata.EDAD || "";
+        document.getElementById("altura").textContent = metadata.ALTURA || "";
+        document.getElementById("genero").textContent = metadata.GENERO || "";
       });
     });
   }
@@ -133,7 +141,28 @@ export default class Pie extends Group {
       });
       const valoresYDerechoExcel = dataExcelDerecho.map((item) => item.Data);
 
-      return { valoresYIzquierdoExcel, valoresYDerechoExcel };
+      function excelDateToJSDate(excelDate) {
+        const baseDate = new Date(1899, 11, 31);
+        const msPerDay = 24 * 60 * 60 * 1000;
+        return new Date(baseDate.getTime() + excelDate * msPerDay);
+      }
+      //obtener informacion del usuario
+      const metadata = {
+        FECHA: sheet["E3"]
+          ? excelDateToJSDate(sheet["E3"].v).toLocaleDateString()
+          : "",
+        NOMBRE: sheet["F3"] ? sheet["F3"].v : "",
+        PESO: sheet["H3"] ? sheet["H3"].v : "",
+        EDAD: sheet["G3"] ? sheet["G3"].v : "",
+        ALTURA: sheet["I3"] ? sheet["I3"].v : "",
+        GENERO: sheet["J3"] ? sheet["J3"].v : "",
+      };
+
+      return {
+        valoresYIzquierdoExcel,
+        valoresYDerechoExcel,
+        metadata,
+      };
     } else {
       console.error("No se ha seleccionado ningún archivo.");
       return null;
@@ -165,38 +194,6 @@ export default class Pie extends Group {
   }
 
   //Funcion para asignar color al modelo 3D
-  // asignacionColor(objeto, valorY) {
-  //   const nuevoMaterial = objeto.material.clone();
-
-  //   if (valorY > -1 && valorY <= 10) {
-  //     nuevoMaterial.color.setHex(0x0000ff);
-  //   } else if (valorY > 10 && valorY <= 20) {
-  //     nuevoMaterial.color.setHex(0x0033ff);
-  //   } else if (valorY > 20 && valorY <= 30) {
-  //     nuevoMaterial.color.setHex(0x0066ff);
-  //   } else if (valorY > 30 && valorY <= 40) {
-  //     nuevoMaterial.color.setHex(0x0099ff);
-  //   } else if (valorY > 40 && valorY <= 50) {
-  //     nuevoMaterial.color.setHex(0x00ccff);
-  //   } else if (valorY > 50 && valorY <= 60) {
-  //     nuevoMaterial.color.setHex(0x00ffff);
-  //   } else if (valorY > 60 && valorY <= 70) {
-  //     nuevoMaterial.color.setHex(0xffff00);
-  //   } else if (valorY > 70 && valorY <= 80) {
-  //     nuevoMaterial.color.setHex(0xffcc00);
-  //   } else if (valorY > 80 && valorY <= 90) {
-  //     nuevoMaterial.color.setHex(0xff9900);
-  //   } else if (valorY > 90 && valorY <= 100) {
-  //     nuevoMaterial.color.setHex(0xff6600);
-  //   } else if (valorY > 100 && valorY <= 2000) {
-  //     nuevoMaterial.color.setHex(0xff0000);
-  //   } else {
-  //     nuevoMaterial.color.setHex(0xffffff);
-  //   }
-
-  //   objeto.material = nuevoMaterial;
-  // }
-
   asignacionColor(objeto, valorY) {
     const nuevoMaterial = objeto.material.clone();
 
