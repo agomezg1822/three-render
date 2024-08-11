@@ -38,7 +38,7 @@ controls.enablePan = false;
 
 // renderer
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setClearColor(0x7ec0ee, 1);
+renderer.setClearColor(0x92928e, 1); //63B7DE
 
 // render loop
 const onAnimationFrameHandler = (timeStamp) => {
@@ -56,6 +56,7 @@ const windowResizeHanlder = () => {
   camera.aspect = width / innerHeight;
   camera.updateProjectionMatrix();
 };
+
 windowResizeHanlder();
 window.addEventListener("resize", windowResizeHanlder);
 

@@ -16,6 +16,10 @@ export default class Pie extends Group {
       this.scale.set(10, 10, 10);
       this.position.set(0, 0, 0);
 
+      const plano = gltf.scene.getObjectByName("Plano");
+      plano.material.color.setHex(0xa8a8d6);
+      // plano.material.color.setHex(0xd0d0ff);
+
       const { valoresYIzquierdoExcel, valoresYDerechoExcel } =
         await this.leerExcel();
 

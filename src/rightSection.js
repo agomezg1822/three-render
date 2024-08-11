@@ -2,18 +2,14 @@ import { title } from "./components/title";
 import Pie from "./objects/Pie/Pie.js";
 
 const template = `
-  ${title(1, "Comparativa de pies")}
-  <div>
+  ${title(1, "DISTRIBUCION DE PRESIÓN PLANTAR")}
+  <div id=primeraSeccion>
     <label for="fileInput">Cargar un archivo:</label>
     <input type="file" id="fileInput" accept=".xlsx">
-  </div>
-  <div>
     <label for="sheetSelect">Seleccionar hoja:</label>
     <select id="sheetSelect"></select>
+    <a id="downloadLink" href="datos.xlsx" download="datos.xlsx">Descargar Plantilla</a>
   </div>
-  <a id="downloadLink" href="datos.xlsx" download="datos.xlsx">Descargar Plantilla</a>
-  <br><br>
-   <!-- Contenedor para mostrar la información adicional -->
   <div id="infoDisplay">
     <h3>Información del Usuario</h3>
     <p><strong>Fecha de la muestra:</strong> <span id="fecha"></span></p>
@@ -21,24 +17,22 @@ const template = `
     <p><strong>Edad (años):</strong> <span id="edad"></span></p>
     <p><strong>Peso(Kg):</strong> <span id="peso"></span></p>
     <p><strong>Altura(Cm):</strong> <span id="altura"></span></p>
-    <p><strong>Género (Biologico):</strong> <span id="genero"></span></p>
+    <p><strong>Sexo:</strong> <span id="genero"></span></p>
   </div>
   <div class="color-scale">
-    <h2>Escala de Colores por Rango de Valores</h2>
-    <div class="color-box" style="background-color: #000000;">0</div>
-    <div class="color-box" style="background-color: #783d67;">1 a 10</div>
-    <div class="color-box" style="background-color: #67597f;">11 a 20</div>
-    <div class="color-box" style="background-color: #597395;">21 a 30</div>
-    <div class="color-box" style="background-color: #3f9eba;">31 a 40</div>
-    <div class="color-box" style="background-color: #5b8d89;">41 a 50</div>
-    <div class="color-box" style="background-color: #6f8368;">51 a 60</div>
-    <div class="color-box" style="background-color: #8c7236;">61 a 70</div>
-    <div class="color-box" style="background-color: #ac5e02;">71 a 80</div>
-    <div class="color-box" style="background-color: #b55411;">81 a 90</div>
-    <div class="color-box" style="background-color: #bf4a20;">91 a 100</div>
-    <div class="color-box" style="background-color: #cc3a37;">101 a ∞ </div>
+  <h2>Escala de Colores por Rango de Valores</h2>
+  <div class="color-gradient-wrapper">
+    <div class="color-gradient-vertical"></div>
+    <div class="scale-values-vertical">
+      <span>100+</span>
+      <span>100</span>
+      <span>50</span>
+      <span>25</span>
+      <span>0</span>
+    </div>
   </div>
- 
+</div>
+
 `;
 
 const rightSection = document.createElement("section");
