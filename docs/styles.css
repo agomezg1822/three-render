@@ -1,220 +1,146 @@
-/* body {
-  display: flex;
-  background-color: #e6f0ff;  
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  font-family: Arial, sans-serif; 
-}
-
-#sidebar {
-  background-color: #ffffff; 
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin: 20px;
-  width: 300px;
-}
-
-h1, h2 {
-  color: #333;
-}
-
-h1 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
-  text-align: center; 
-}
-
-h2 {
-  font-size: 1.4em;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #4a90e2;
-  padding-bottom: 5px;
-  text-align: center;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #4a90e2; 
-}
-
-select, input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-  border: 1px solid #cdd8e1; 
-  border-radius: 4px;
-  font-size: 14px;
-  background-color: #edf4fa; 
-  color: #4a90e2; 
-  cursor: pointer;
-}
-
-a#downloadLink {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4a90e2;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  text-align: center;
-}
-
-a#downloadLink:hover {
-  background-color: #357abd;
-}
-
-.color-scale {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 0px;
-}
-
-.color-box {
-  width: 100px;
-  height: 30px;
-  margin: 5px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 4px;
-}
- */
-
  body {
   display: flex;
-  background-color: #e6f0ff; /* Color de fondo para el entorno 3D */
+  background-color: #ffffff; /* Color de fondo para el entorno 3D */
   margin: 0;
-  height: 100vh;
   overflow: hidden;
   font-family: Arial, sans-serif; /* Fuente global */
 }
 
-#sidebar {
-  background-color: #ffffff; /* Fondo blanco para el panel lateral */
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin: 20px;
-  width: 320px; /* Ancho ligeramente incrementado para acomodar el contenido */
+section {
+  padding: 0px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+  margin: 0px;
   overflow-y: auto; /* Añade scroll si el contenido supera la altura del panel */
-}
-
-h1, h2 {
-  color: #333;
+  background-color: #e6f0ff;
+  border-left:  0px;
 }
 
 h1 {
   font-size: 1.8em;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+  color: #333333;
   text-align: center; /* Alineación centrada */
-}
-
-h2 {
-  font-size: 1.4em;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #4a90e2;
-  padding-bottom: 5px;
-  text-align: center; /* Alineación centrada */
+  background-color: #e6f0ff;
+  border-bottom:  2px solid black;
+  margin-top: 0px;
+  padding: 10px;
 }
 
 label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   font-weight: bold;
-  color: #4a90e2; 
+  color: #333333; 
+  background-color: #e6f0ff;
+}
+
+#primeraSeccion{
+  display: flex;
+  background-color: #e6f0ff;
+  padding: 10px;
+  flex-direction: column;
+  color: #333333;
+}
+
+select{
+  width: 100px;
 }
 
 select, input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
+  padding: 0px;
+  margin-bottom: 10px;
   box-sizing: border-box;
-  border: 1px solid #cdd8e1; 
+  border: 1px solid #cccccc; 
   border-radius: 4px;
   font-size: 14px;
-  background-color: #edf4fa; 
+  background-color: #e6f0ff;
   color: #4a90e2; 
   cursor: pointer;
 }
 
+h2 {
+  font-size: 18.72px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-bottom: 0px solid #4a90e2;
+  padding-bottom: 10px;
+  color: #333333;
+  text-align: center; /* Alineación centrada */
+  border-top: 2px solid black; 
+  background-color: #e6f0ff;
+}
+
 a#downloadLink {
   display: inline-block;
-  margin-top: 20px;
   padding: 10px 20px;
   background-color: #4a90e2;
   color: white;
+  border: #cccccc;
   text-decoration: none;
   border-radius: 4px;
   font-weight: bold;
   text-align: center;
 }
 
-a#downloadLink:hover {
-  background-color: #357abd;
+/* Nueva sección para mostrar la información extraída del archivo Excel */
+#infoDisplay {
+  background-color: #e6f0ff; /* Fondo ligeramente gris para diferenciar la sección */
+  padding: 10px;
+  margin-top: 0px;
+  border-top: 2px solid black;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+h3{
+  margin-top: 0px;
+}
+p{
+  color: #333333;
 }
 
 .color-scale {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #e6f0ff;
 }
 
-.color-box {
-  width: 100px;
-  height: 30px;
-  margin: 5px 0;
+.color-gradient-wrapper {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  color: white;
+}
+
+.color-gradient-vertical {
+  width: 90px; /* Ancho de la barra */
+  height: 300px; /* Altura de la barra */
+  background: linear-gradient(
+    to bottom,
+    #ff0000,   /* Rojo */
+    #ff6600,
+    #ffff00,   /* Amarillo */
+    #00ffff,   /* Cian */
+    #00ccff,
+    #0066ff,
+    #0033ff,   /* Azul oscuro */
+    #000000    /* Negro */
+  );
+  border: 1px solid #000; /* Borde alrededor de la barra */
+}
+
+.scale-values-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px; /* Altura de los valores, igual a la de la barra */
   font-weight: bold;
-  text-align: center;
-  border-radius: 4px;
+  color: #000;
+  margin-left: 10px; /* Espacio entre la barra y los valores */
 }
 
-/* Nueva sección para mostrar la información extraída del archivo Excel */
-.info-section {
-  background-color: #f7f9fc; /* Fondo ligeramente gris para diferenciar la sección */
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.scale-values-vertical span {
+  text-align: left; /* Alinear el texto a la izquierda */
 }
 
-.info-section h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #4a90e2;
-  text-align: center; /* Alineación centrada */
-}
 
-.info-item {
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #333;
-}
-
-.info-item span {
-  font-weight: bold;
-  color: #4a90e2;
-}
