@@ -4,11 +4,12 @@ import Pie from "./objects/Pie/Pie.js";
 const template = `
   ${title(1, "DISTRIBUCION DE PRESIÓN PLANTAR")}
   <div id=primeraSeccion>
+    <a id="downloadLink" href="datos.xlsx" download="datos.xlsx">Descargar Plantilla</a>
     <label for="fileInput">Cargar un archivo:</label>
     <input type="file" id="fileInput" accept=".xlsx">
     <label for="sheetSelect">Seleccionar hoja:</label>
     <select id="sheetSelect"></select>
-    <a id="downloadLink" href="datos.xlsx" download="datos.xlsx">Descargar Plantilla</a>
+    
   </div>
   <div id="infoDisplay">
     <h3>Información del Usuario</h3>
