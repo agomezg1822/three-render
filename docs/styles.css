@@ -3,11 +3,10 @@
   background-color: #ffffff; /* Color de fondo para el entorno 3D */
   margin: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
   font-family: Arial, sans-serif; /* Fuente global */
   height: 100vh;
   width: 100vw;
-  flex-grow: 1;
-
 }
 canvas{
   height: 100%;
@@ -17,25 +16,43 @@ section {
   padding: 0px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
   margin: 0px;
-  overflow-y: auto; /* Añade scroll si el contenido supera la altura del panel */
   background-color: #e6f0ff;
   border-left:  0px;
   overflow-y: scroll;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: calc(0.3em + 0.9vw + 0.9vh);
   margin-bottom: 0px;
   color: #333333;
-  text-align: center; /* Alineación centrada */
+  text-align: center;
   background-color: #e6f0ff;
   border-bottom:  2px solid black;
-  margin-top: 0px;
   padding: 10px;
   margin-top: 10px;
+  word-break: break-word;
+}
+
+h2 {
+  font-size: 18.72px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-bottom: 0px solid #4a90e2;
+  padding-bottom: 10px;
+  color: #333333;
+  text-align: center;
+  
+  background-color: #e6f0ff;
+}
+
+h3{
+  margin-top: 0px;
+  text-align: center;
+}
+p{
+  color: #333333;
 }
 
 label {
@@ -57,31 +74,21 @@ label {
 
 select{
   width: 100px;
+  font-weight: bold;
 }
 
 select, input[type="file"] {
   padding: 0px;
   margin-bottom: 10px;
   box-sizing: border-box;
-  border: 1px solid #cccccc; 
+  border: 1px solid #e6f0ff; 
   border-radius: 4px;
   font-size: 14px;
-  background-color: #e6f0ff;
-  color: #4a90e2; 
+  background-color: #4a90e2;
+  color: white; 
   cursor: pointer;
 }
 
-h2 {
-  font-size: 18.72px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  border-bottom: 0px solid #4a90e2;
-  padding-bottom: 10px;
-  color: #333333;
-  text-align: center; /* Alineación centrada */
-  border-top: 2px solid black; 
-  background-color: #e6f0ff;
-}
 
 a#downloadLink {
   display: inline-block;
@@ -102,12 +109,6 @@ a#downloadLink {
   border-top: 2px solid black;
 }
 
-h3{
-  margin-top: 0px;
-}
-p{
-  color: #333333;
-}
 
 .color-scale {
   display: flex;
@@ -115,6 +116,8 @@ p{
   align-items: center;
   background-color: #e6f0ff;
   margin-bottom: 15px;
+  padding: 10px;
+  border-top: 2px solid black; 
 }
 
 .color-gradient-wrapper {
@@ -128,14 +131,14 @@ p{
   height: 300px; /* Altura de la barra */
   background: linear-gradient(
     to bottom,
-    #ff0000,   /* Rojo */
+    #ff0000,  
     #ff6600,
-    #ffff00,   /* Amarillo */
-    #00ffff,   /* Cian */
+    #ffff00,  
+    #00ffff,   
     #00ccff,
     #0066ff,
-    #0033ff,   /* Azul oscuro */
-    #000000    /* Negro */
+    #0033ff,  
+    #000000    
   );
   border: 1px solid #000; /* Borde alrededor de la barra */
 }
