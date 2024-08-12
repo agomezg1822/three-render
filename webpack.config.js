@@ -62,11 +62,7 @@ module.exports = {
         </html>`,
     }),
     new CopyPlugin({
-      patterns: [
-        { from: "src/public", to: "" },
-        { from: "src/public/styles.css", to: "styles.css" }, // Copia styles.css al directorio de salida
-        { from: "src/public/datos.xlsx", to: "datos.xlsx" },
-      ],
+      patterns: [{ from: "src/public", to: "" }],
     }),
   ],
 };
