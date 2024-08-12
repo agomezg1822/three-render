@@ -2,10 +2,13 @@
   display: flex;
   background-color: #ffffff; /* Color de fondo para el entorno 3D */
   margin: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   font-family: Arial, sans-serif; /* Fuente global */
-}
 
+}
+canvas{
+  height: 80%;
+}
 section {
   padding: 0px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
@@ -13,6 +16,9 @@ section {
   overflow-y: auto; /* Añade scroll si el contenido supera la altura del panel */
   background-color: #e6f0ff;
   border-left:  0px;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+
 }
 
 h1 {
@@ -83,13 +89,11 @@ a#downloadLink {
   text-align: center;
 }
 
-/* Nueva sección para mostrar la información extraída del archivo Excel */
 #infoDisplay {
-  background-color: #e6f0ff; /* Fondo ligeramente gris para diferenciar la sección */
+  background-color: #e6f0ff;
   padding: 10px;
   margin-top: 0px;
   border-top: 2px solid black;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 h3{
