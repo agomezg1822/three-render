@@ -4,8 +4,12 @@
   margin: 0;
   overflow-y: scroll;
   font-family: Arial, sans-serif; /* Fuente global */
-}
 
+}
+canvas{
+  height: 100vh;
+  width: 100vw;
+}
 section {
   padding: 0px;
   box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
@@ -14,6 +18,9 @@ section {
   background-color: #e6f0ff;
   border-left:  0px;
   overflow-y: scroll;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
 }
 
 h1 {
