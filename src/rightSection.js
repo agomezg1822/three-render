@@ -2,7 +2,7 @@ import { title } from "./components/title";
 import Pie from "./objects/Pie/Pie.js";
 
 const template = `
-  ${title(1, "DISTRIBUCION DE PRESIÓN PLANTAR")}
+  ${title(1, "DISTRIBUCIÓN DE PRESIÓN PLANTAR")}
   <div id=primeraSeccion>
     <a id="downloadLink" href="datos.xlsx" download="datos.xlsx">Descargar Plantilla</a>
     <label for="fileInput">Cargar un archivo:</label>
