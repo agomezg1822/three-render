@@ -20,7 +20,7 @@ const template = `
     <p><strong>Sexo:</strong> <span id="genero"></span></p>
   </div>
   <div class="color-scale">
-  <h2>Escala de Colores por Rango de Valores</h2>
+  <h2>Escala de colores por rango de valores</h2>
   <div class="color-gradient-wrapper">
     <div class="color-gradient-vertical"></div>
     <div class="scale-values-vertical">
